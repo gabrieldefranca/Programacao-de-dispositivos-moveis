@@ -15,10 +15,22 @@ export default function MegaSenaScreen() {
     setJogosMegaSena([...jogosMegaSena, jogoOrdenado]);
   };
 
+  const zerarJogos = () => {
+    setJogosMegaSena([]);
+  };
+
   return (
     <View style={styles.container}>
       <Title style={styles.titulo}>Jogos Gerados: {jogosMegaSena.length}</Title>
-      <Button mode="contained" onPress={gerarJogo} style={styles.botao}>Gerar Jogo</Button>
+
+      <View style={styles.botoes}>
+        <Button mode="contained" onPress={gerarJogo} style={styles.botao}>
+          Gerar Jogo
+        </Button>
+        <Button mode="outlined" onPress={zerarJogos} style={styles.botaoZerar}>
+          Zerar Jogos
+        </Button>
+      </View>
 
       <FlatList
         data={jogosMegaSena}
@@ -38,6 +50,8 @@ export default function MegaSenaScreen() {
 const styles = StyleSheet.create({
   container: { flex: 1, padding: 16, backgroundColor: '#1a1a1a' },
   titulo: { color: '#0077b6', marginBottom: 10 },
-  botao: { marginBottom: 16, backgroundColor: '#9a9a9a' },
+  botoes: { flexDirection: 'row', justifyContent: 'space-between', marginBottom: 16 },
+  botao: { backgroundColor: '#9a9a9a', flex: 1, marginRight: 8 },
+  botaoZerar: { borderColor: '#0077b6', flex: 1, marginLeft: 8 },
   card: { backgroundColor: '#9a9a9a', marginVertical: 8 },
 });
